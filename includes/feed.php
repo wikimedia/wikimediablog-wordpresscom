@@ -25,30 +25,23 @@ function wmb_add_custom_feed_vars( $query_vars ) {
     return $query_vars;
 }
 
-# Set default terms to posts on publish
+# Set default term for email_update taxonomy on publish
 if ( current_user_can( 'edit_posts' ) ) {
 	add_action( 'save_post', 'wmb_set_default_object_terms', 100, 2 );
 }
 
 function wmb_set_default_object_terms( $post_id, $post ) {
 	if ( 'publish' === $post->post_status && $post->post_type === 'post' ) {
-		$defaults = array(
-			'email_update' => array(
-				'show-in-email-updates'
-			)
-		);
+		$taxonomy = 'email_update';
+		$default = 'show-in-email-updates';
 
-		$taxonomies = get_object_taxonomies( $post->post_type );
+		$term_objects = get_the_terms( $post_id, $taxonomy );
+        if ( $term_objects && ! is_wp_error( $term_objects) ) {
+                $terms = wp_list_pluck( $term_objects, 'term_id' );
+        }
 
-		foreach ( (array) $taxonomies as $taxonomy ) {
-			$term_objects = get_the_terms( $post_id, $taxonomy );
-            if ( $term_objects && ! is_wp_error( $term_objects) ) {
-                    $terms = wp_list_pluck( $term_objects, 'term_id' );
-            }
-
-			if ( empty( $terms ) && array_key_exists( $taxonomy, $defaults ) ) {
-				wp_set_object_terms( $post_id, $defaults[$taxonomy], $taxonomy );
-			}
+		if ( empty( $terms ) ) {
+			wp_set_object_terms( $post_id, $default, $taxonomy );
 		}
 	}
 }
