@@ -2,11 +2,6 @@
 
 require_once( WP_CONTENT_DIR . '/themes/vip/plugins/vip-init.php' );
 
-# Put site into maintenance mode when activating the theme.
-# This block to be removed when ready to launch site.
-define( 'VIP_MAINTENANCE_MODE', true );
-wpcom_vip_load_plugin( 'maintenance-mode' );
-
 # Load VIP plugins & configuration settings
 wpcom_vip_load_plugin( 'fieldmanager' );
 wpcom_vip_load_plugin( 'co-authors-plus' );
