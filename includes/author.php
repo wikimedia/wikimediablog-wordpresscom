@@ -39,7 +39,9 @@ function wmb_coauthors_posts_link( $args, $author ) {
 	}
 
 	if ( $author->description === 'staff' ) {
-		$type = 'Wikimedia Foundation staff';
+		$type = 'Wikimedia Foundation';
+	} elseif ( $author->description !== '' ) {
+		$type = wp_kses( $author->description, array() );
 	} else {
 		$type = 'Community member';
 	}
