@@ -267,7 +267,14 @@ class WMB_Category_Posts extends WP_Widget {
 			if ( !empty( $instance['more_link_text'] ) ) {
 				?>
 				<p class="link-more">
-					<a href="<?php echo esc_url( wpcom_vip_get_term_link( (int) $instance['post_category'] ) ); ?>"><?php echo esc_html( $instance['more_link_text'] ); ?></a>
+					<?php
+						//VIP: always check return value before passing it to another function
+						$term_link = wpcom_vip_get_term_link( (int) $instance['post_category'] );
+						if ( is_wp_error( $term_link ) ) {
+							$term_link = '';
+						}
+					?>
+					<a href="<?php echo esc_url( $term_link ); ?>"><?php echo esc_html( $instance['more_link_text'] ); ?></a>
 				</p>
 				<?php
 			}
