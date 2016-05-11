@@ -368,7 +368,7 @@ class WMB_Most_Viewed_Posts extends WP_Widget {
 							<a href="<?php echo esc_url( get_permalink( $p['post_id'] ) ); ?>"><?php echo esc_html( apply_filters( 'the_title', $p['post_title'] ) ); ?></a>
 						</h4>
 
-						<?php echo wp_kses_post( wp_trim_words( get_post_field( 'post_content', $p['post_id'] ), 6, '...' ) ); ?>
+						<?php echo wp_kses_post( wp_trim_words( get_post_field( 'post_excerpt', $p['post_id'] ), 6, '...' ) ); ?>
 					</li>
 				<?php endforeach ?>
 			</ul>
