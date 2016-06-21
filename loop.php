@@ -25,11 +25,13 @@
 					</div><!-- /.article-image -->
 				<?php endif ?>
 				
-				<div class="article-body">
-					<div class="article-entry">
-						<?php the_excerpt(); ?>
-					</div><!-- /.article-entry -->
-				</div><!-- /.article-body -->
+				<?php if ( $post->post_excerpt ): ?>
+					<div class="article-body">
+						<div class="article-entry">
+							<?php the_excerpt(); ?>
+						</div><!-- /.article-entry -->
+					</div><!-- /.article-body -->
+				<?php endif ?>
 				
 				<footer class="article-foot">
 					<div class="article-meta">

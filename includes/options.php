@@ -25,7 +25,7 @@ function wmb_register_options() {
 				'children' => array(
 					# Social tab - fields
 					'facebook_link'    => new Fieldmanager_TextField( __( 'Facebook Link', 'wmb' ) ),
-					'google_plus_link' => new Fieldmanager_TextField( __( 'Google+ Link', 'wmb' ) ),
+					'instagram_link'   => new Fieldmanager_TextField( __( 'Instagram Link', 'wmb' ) ),
 					'twitter_link'     => new Fieldmanager_TextField( __( 'Twitter Link', 'wmb' ) ),
 					'linkedin_link'    => new Fieldmanager_TextField( __( 'LinkedIn Link', 'wmb' ) ),
 					'rss_link'         => new Fieldmanager_TextField( __( 'RSS Link', 'wmb' ) ),

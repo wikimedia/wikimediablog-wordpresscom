@@ -57,7 +57,7 @@ class WMB_Social_Links extends WP_Widget {
 		$options = get_option( 'wmb_options' );
 		$socials = array(
 			'facebook' => 'facebook',
-			'google-plus' => 'google_plus',
+			'instagram' => 'instagram',
 			'twitter' => 'twitter',
 			'linkedin' => 'linkedin',
 			'rss' => 'rss',

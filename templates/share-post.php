@@ -4,7 +4,7 @@ $link = get_permalink();
 $text = get_the_title() . ' - ' . $link;
 $facebook_link = 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode( $link );
 $googleplus_link = 'https://plus.google.com/share?url=' . urlencode( $link );
-$twitter_link = 'https://twitter.com/home?status=' . urlencode( $text );
+$twitter_link = 'https://twitter.com/home?status=' . urlencode( html_entity_decode( $text, ENT_COMPAT, 'UTF-8' ) );
 ?>
 <div class="share">
 	<ul>

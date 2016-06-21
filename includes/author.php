@@ -5,11 +5,7 @@ function wmb_author_links( $return = false ) {
 	ob_start();
 
 	if ( function_exists( 'coauthors_posts_links' ) ) {
-		if ( is_single() && get_post_type() === 'post' ) {
-			$between = '<br/> &amp; ';
-		} else {
-			$between = null;
-		}
+		$between = '<br/>';
 		coauthors_posts_links($between, $between);
 	} else {
 		the_author_link();
@@ -43,10 +39,12 @@ function wmb_coauthors_posts_link( $args, $author ) {
 	} elseif ( $author->description !== '' ) {
 		$type = wp_kses( $author->description, array() );
 	} else {
-		$type = 'Community member';
+		$type = '';
 	}
 
-	$args['after_html'] = ', ' . $type . ' %%%';
+	if ( $type ) {
+		$args['after_html'] = ', ' . $type . ' %%%';
+	}
 
 	return $args;
 }

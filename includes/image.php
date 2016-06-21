@@ -16,7 +16,7 @@ function wmb_featured_image_credits( $image_id ) {
 	}
 	?>						
 	<div class="author-credentials">
-		<?php echo apply_filters( 'the_content', $image_content ); ?>
+		<i><small><?php echo apply_filters( 'the_content', $image_content ); ?></small></i>
 	</div>						
 	<?php
 }

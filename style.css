@@ -160,7 +160,10 @@ img.alignnone,
 
 .wp-caption { position: relative; }
 .wp-caption img { width: 100%; }
-.wp-caption-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 5px 10px; background: rgba(0, 0, 0, 0.5); color: #fff; }
+.wp-caption-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 5px 10px; background: rgba(0, 0, 0, 0.5); color: #fff; font-style: italic; font-size: smaller; }
+.wp-caption-text a { text-decoration: underline; color: #fff; }
+.wp-caption-text a:hover { text-decoration: none; }
+.wp-caption-text:last-child { padding-bottom: 5px; }
 
 /* Gallery */
 

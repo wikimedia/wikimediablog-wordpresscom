@@ -4,7 +4,7 @@ require_once( WP_CONTENT_DIR . '/themes/vip/plugins/vip-init.php' );
 
 # Load VIP plugins & configuration settings
 wpcom_vip_load_plugin( 'fieldmanager' );
-wpcom_vip_load_plugin( 'co-authors-plus' );
+wpcom_vip_load_plugin( 'co-authors-plus', 'plugins', '3.2' );
 wpcom_vip_load_category_base( 'c' );
 
 # Load libraries and includes
@@ -32,6 +32,7 @@ include_once( __DIR__ . '/includes/term-choose-sidebar.php' );
 include_once( __DIR__ . '/includes/term-fields.php' );
 include_once( __DIR__ . '/includes/admin-columns.php' );
 include_once( __DIR__ . '/includes/scripts.php' );
+include_once( __DIR__ . '/includes/co-authors.php' );
 
 # Enqueue JS and CSS assets on the front-end
 add_action( 'wp_enqueue_scripts', 'wmb_wp_enqueue_scripts' );
