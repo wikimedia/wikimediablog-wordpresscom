@@ -137,16 +137,16 @@ add_action( 'wp_ajax_coauthors_ajax_suggest', 'wmb_coauthors_ajax_suggest' );
 function wmb_coauthors_ajax_suggest() {
 	global $coauthors_plus;
 
-	if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'coauthors-search' ) ) {
+	if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'coauthors-search' ) ) {
 		die();
 	}
 
-	if ( empty( $_REQUEST['q'] ) ) {
+	if ( empty( $_GET['q'] ) ) {
 		die();
 	}
 
-	$search = sanitize_text_field( strtolower( $_REQUEST['q'] ) );
-	$ignore = array_map( 'sanitize_text_field', explode( ',', $_REQUEST['existing_authors'] ) );
+	$search = sanitize_text_field( strtolower( $_GET['q'] ) );
+	$ignore = array_map( 'sanitize_text_field', explode( ',', $_GET['existing_authors'] ) );
 
 	$authors = $coauthors_plus->search_authors( $search, $ignore );
 	parse_str( parse_url( $_SERVER['HTTP_REFERER'], PHP_URL_QUERY ), $params );

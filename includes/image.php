@@ -14,9 +14,9 @@ function wmb_featured_image_credits( $image_id ) {
 	if ( ! $image_content ) {
 		return;
 	}
-	?>						
+	?>
 	<div class="author-credentials">
-		<i><small><?php echo apply_filters( 'the_content', $image_content ); ?></small></i>
+		<i><small><?php echo apply_filters( 'the_content', wp_kses_post($image_content) ); ?></small></i>
 	</div>						
 	<?php
 }
