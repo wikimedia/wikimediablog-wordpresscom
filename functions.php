@@ -232,3 +232,8 @@ function wmb_filter_jetpack_infinite_scroll_js_settings( $settings ) {
 	return $settings;
 }
 add_filter( 'infinite_scroll_js_settings', 'wmb_filter_jetpack_infinite_scroll_js_settings' );
+
+# Default to HTTPS canonical URLs
+add_filter( 'rel_canonical', function( $canonical_url ) {
+	return  str_replace( 'http://', 'https://', $canonical_url );
+} );
