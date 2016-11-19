@@ -19,7 +19,7 @@ Use standard git deployment
 
 		$ git remote add staging git@wikimediablog.staging.exygy.com:/home/git/wikimedia-blog
 
-* Push your changes, as normal
+* Push your changes, as normal.
 
 		$ git push staging master
 
