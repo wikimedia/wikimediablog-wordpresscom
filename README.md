@@ -7,7 +7,7 @@ Development Setup
 1. Setup WordPress [VIP quickstart](https://github.com/Automattic/vip-quickstart) environment
 2. Clone this theme repo into `www/wp-content/themes/vip/`
 
-Deployment
+Deployment (from 2015, outdated)
 ----------
 
 ## Staging ###
