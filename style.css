@@ -736,7 +736,8 @@ img.alignnone,
 }
 
 .logo {
-	float: leftwidth: 37px;
+	float: left;
+	width: 37px;
 	height: 36px;
 	margin-left: -86px;
 	background: url( images/logo.png ) no-repeat 0 0;
