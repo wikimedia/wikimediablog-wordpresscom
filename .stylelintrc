@@ -1,0 +1,11 @@
+{
+	"extends": "stylelint-config-wikimedia",
+	"rules": {
+		"declaration-colon-space-after": null,
+		"font-family-name-quotes": null,
+		"max-empty-lines": null,
+		"no-descending-specificity": null,
+		"selector-no-id": null,
+		"selector-no-vendor-prefix": null
+	}
+}

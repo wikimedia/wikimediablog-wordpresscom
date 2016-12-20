@@ -1,1 +1,4 @@
-.media-wrapper img { max-width: 200px; height: auto; }
+.media-wrapper img {
+	max-width: 200px;
+	height: auto;
+}
