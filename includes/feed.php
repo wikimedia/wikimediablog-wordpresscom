@@ -210,6 +210,3 @@ if ( isset( $_GET['email_digest'] ) ) {
 		die( 'You must be logged in to access this.' );
 	}
 }
-( 'You must be logged in to access this.' );
-	}
-}
