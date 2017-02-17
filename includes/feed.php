@@ -5,7 +5,7 @@
  * /wp-includes/feed-rss2.php uses the_author(), so we selectively filter the_author value
  */
 add_filter( 'the_author', 'wmb_coauthors_in_rss' );
-function wmb_coauthors_in_rss( $the_author ) { 
+function wmb_coauthors_in_rss( $the_author ) {
 	if ( ! is_feed() || ! function_exists( 'coauthors' ) ) {
 		return $the_author;
 	}
@@ -17,7 +17,7 @@ function wmb_coauthors_in_rss( $the_author ) {
  * Custom RSS feeds for daily and weekly digest
  * to access the feeds use /feed/?show_custom_feed=daily_digest and /feed/?show_custom_feed=weekly_digest
  */
- 
+
 # Add custom variable which we will use to identify our feeds.
 add_action( 'query_vars', 'wmb_add_custom_feed_vars' );
 function wmb_add_custom_feed_vars( $query_vars ) {
@@ -48,7 +48,7 @@ function wmb_set_default_object_terms( $post_id, $post ) {
 
 # Recognize feeds and parameters and initialize actions accordingly.
 add_filter( 'pre_get_posts', 'wmb_change_custom_feed' );
-function wmb_change_custom_feed( $query ) { 
+function wmb_change_custom_feed( $query ) {
     if ( $query->is_feed() && 'daily_digest' == $query->get( 'show_custom_feed' ) || 'weekly_digest' == $query->get( 'show_custom_feed' ) ) {
         add_filter( 'the_excerpt_rss', 'wmb_alter_rss_excerpt' );
 
@@ -60,10 +60,10 @@ function wmb_change_custom_feed( $query ) {
 			)
 		));
 
- 		if ( 'weekly_digest' == $query->get( 'show_custom_feed' ) ) { 
- 			set_query_var( 'orderby', array( 
+ 		if ( 'weekly_digest' == $query->get( 'show_custom_feed' ) ) {
+ 			set_query_var( 'orderby', array(
  				'menu_order' => 'ASC',
- 				'date' => 'DESC' 
+ 				'date' => 'DESC'
  			));
  			add_filter( 'posts_where', 'wmb_posts_since_last_monday' );
         }
@@ -71,7 +71,7 @@ function wmb_change_custom_feed( $query ) {
 
     return $query;
 }
-  
+
 /**
  * Custom excerpts for RSS feeds for Mailchimp.
  * We'll put the entire HTML into the excerpt field:
@@ -83,7 +83,7 @@ function wmb_alter_rss_excerpt( $excerpt ) {
 }
 
 function wmb_display_email_post( $excerpt = '' ) {
-	global $post; 
+	global $post;
 
 	// replace excerpt with feature post content if entered
 	$featured_post_content = get_post_meta( $post->ID, '_featured_post_content', true );
@@ -93,35 +93,35 @@ function wmb_display_email_post( $excerpt = '' ) {
 		$excerpt = get_the_excerpt();
 	}
 
-	$output = '<div style="padding: 30px 25px 15px;">';
-		$output .= '<div><a style="color:black; text-decoration:none; font-family: georgia, serif; font-size: 20px;" href="' . esc_url( get_permalink( $post->ID ) ) . '">' . esc_html( get_the_title( $post->ID ) ) . '</a></div>';
+	$output = '<div style="padding:30px 25px 15px;">';
+		$output .= '<div><a style="color:#000; text-decoration:none; font-family:georgia, serif; font-size:20px;" href="' . esc_url( get_permalink( $post->ID ) ) . '">' . esc_html( get_the_title( $post->ID ) ) . '</a></div>';
 		$output .= '<div>By ' . coauthors( null, null, null, null, false ) . '</div>';
 	$output .= '</div>';
 
-	if ( has_post_thumbnail( $post->ID ) ) { 
-		$thumbnail_id    = get_post_thumbnail_id( $post->ID ); 
+	if ( has_post_thumbnail( $post->ID ) ) {
+		$thumbnail_id    = get_post_thumbnail_id( $post->ID );
 		$thumbnail_image = get_post( $thumbnail_id );
 		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 
-		$output .= '<a href="' . esc_attr( get_permalink( $post->ID ) ) . '"><img width="570" src="' . esc_url( $thumbnail_src[0] ) . '"></a>';		
-		$output .= '<div style="padding: 15px 25px 30px;">';
+		$output .= '<a href="' . esc_attr( get_permalink( $post->ID ) ) . '"><img width="570" src="' . esc_url( $thumbnail_src[0] ) . '"></a>';
+		$output .= '<div style="padding:15px 25px 30px;">';
 		$output .= '<p style="font-size:12px;"><i>' . strip_tags( wp_kses_post( $thumbnail_image->post_excerpt ) ) . "</i></p>\n";
 	} else {
-		$output .= '<div style="padding: 15px 25px 30px;">';
+		$output .= '<div style="padding:15px 25px 30px;">';
 	}
 
 	$output .= '<p>' . nl2br( wp_kses_post( $excerpt ) ) . '</p>';
 
-	$output .= '<a href="' . esc_url( get_permalink( $post->ID ) ) . '" style="color:#ffffff;display:inline-block;font-weight:500;font-size:16px;line-height:28px;width:auto;white-space:nowrap;min-height:28px;'
-		. 'margin:12px 5px 30px 0;padding:0 22px;text-decoration:none;text-align:center;border:0;vertical-align:top;background-color:#347bff">'
-		. '<span style="display:inline;font-family:arial,sans-serif;text-decoration:none;font-weight:500;font-style:normal;font-size:16px;line-height:28px;border:none;background-color:#347bffcolor:#ffffff">'
+	$output .= '<a href="' . esc_url( get_permalink( $post->ID ) ) . '" style="color:#fff; display:inline-block; font-weight:500; font-size:16px; line-height:28px; width:auto; white-space:nowrap; min-height:28px;'
+		. 'margin:12px 5px 30px 0;padding:0 22px; text-decoration:none; text-align:center; border:0; vertical-align:top; background-color:#36c;">'
+		. '<span style="display:inline; font-family:arial, sans-serif; font-weight:500; font-style:normal; font-size:16px; line-height:28px; border:0; background-color:#36c;color:#fff;">'
 		. 'View it on the blog</span></a></div>';
-    
-    return $output;	
+
+    return $output;
 }
 
-function wmb_email_digest() { 
-	global $post; 
+function wmb_email_digest() {
+	global $post;
 	$type = sanitize_text_field( $_GET['email_digest'] ); ?>
 	<!DOCTYPE html>
 	<html>
@@ -130,23 +130,23 @@ function wmb_email_digest() {
 	</head>
 		<body>
 
-			<table width="580" style="margin:0 auto; background:#ccc; color:black; font-family:arial, sans-serif; font-size: 14px;" cellspacing="0" cellpadding="0">
+			<table width="580" style="margin:0 auto; background:#c8ccd1; color:#000; font-family:arial, sans-serif; font-size:14px;" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="34">&nbsp;</td>
 				</tr>
 				<tr>
-					<td style="background: #E6E6E6;">
-						<img src="https://wikimediablog.files.wordpress.com/2015/06/wikimedia.png" style="float:right; margin: 10px 30px 0 0;" height="40" width="40">
-						<div style="font-family: arial, sans-serif; font-size: 16px; margin: 10px 0 10px 15px;">
+					<td style="background:#eaecf0;">
+						<img src="https://wikimediablog.files.wordpress.com/2015/06/wikimedia.png" style="float:right; margin:10px 30px 0 0;" height="40" width="40">
+						<div style="font-family:arial, sans-serif; font-size:16px; margin:10px 0 10px 15px;">
 							<div><?php echo $type == 'weekly' ? 'Weekly' : 'Daily'; ?> update</div>
-							<div style="margin-top:5px"><b><?php echo $type == 'weekly' ? 'This week' : 'Today'; ?> on the Wikimedia blog:</b></div>
+							<div style="margin-top:5px;"><b><?php echo $type == 'weekly' ? 'This week' : 'Today'; ?> on the Wikimedia blog:</b></div>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<div style="margin:0 5px; background:#fff;">
-							<?php 
+							<?php
 							$args = array();
 
 							if ( $type == 'weekly' ) {
@@ -162,9 +162,9 @@ function wmb_email_digest() {
 											'operator' => 'NOT IN'
 										)
 									),
-									'orderby' => array( 
+									'orderby' => array(
 						 				'menu_order' => 'ASC',
-						 				'date' => 'DESC' 
+						 				'date' => 'DESC'
 						 			)
 								);
 
@@ -185,9 +185,9 @@ function wmb_email_digest() {
 							}
 
 							?>
-							<div style="padding: 0 25px 15px">
-								<div style="font-size: 18px; width: 60%;">More stories on the 
-									<a style="color:black; font-weight:bold; text-decoration:none;" href="http://blog.wikimedia.org">blog</a>.
+							<div style="padding:0 25px 15px;">
+								<div style="font-size:18px; width:60%;">More stories on the
+									<a style="color:#000; font-weight:bold; text-decoration:none;" href="https://blog.wikimedia.org">blog</a>.
 								</div>
 							</div>
 						</div>
@@ -207,6 +207,9 @@ if ( isset( $_GET['email_digest'] ) ) {
 	if ( is_user_logged_in() ) {
 		add_action( 'init', 'wmb_email_digest', 100 );
 	} else {
-		die('You must be logged in to access this.');
+		die( 'You must be logged in to access this.' );
+	}
+}
+( 'You must be logged in to access this.' );
 	}
 }
