@@ -28,7 +28,7 @@
 				capsule[ 'event' ][ 'referrerUrl' ] = urlStripProto( document.referrer );
 			}
 			var beacon = document.createElement( 'img' );
-			beacon.src = '//bits.wikimedia.org/event.gif?' + encodeURIComponent( $.toJSON( capsule ) ) + ';';
+			beacon.src = '//www.wikimedia.org/beacon/event?' + encodeURIComponent( $.toJSON( capsule ) ) + ';';
 		}, 0 );
 	} );
 }(jQuery));
