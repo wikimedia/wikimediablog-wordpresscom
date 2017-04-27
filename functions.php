@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once( WP_CONTENT_DIR . '/themes/vip/plugins/vip-init.php' );
 
@@ -207,15 +207,15 @@ function wmb_thumbnail_caption() {
 
 	$thumbnail = get_post( get_post_meta( get_the_ID(), '_thumbnail_id', true ) );
 	if( $thumbnail && $thumbnail->post_excerpt ) {
-		echo '<p class="img-info">' . nl2br( strip_tags( $thumbnail->post_excerpt, '<a>' ) ) . '</p>';		
+		echo '<p class="img-info">' . nl2br( strip_tags( $thumbnail->post_excerpt, '<a>' ) ) . '</p>';
 	}
 }
 
 # Disable media embeds in comments, for reader privacy reasons
-# per http://lobby.vip.wordpress.com/2014/09/04/coming-soon-enabling-embeds-in-comments/
+# per https://lobby.vip.wordpress.com/2014/09/04/coming-soon-enabling-embeds-in-comments/
 add_filter( 'wpcom_vip_enable_full_comment_embeds', '__return_false' );
 
-# Deactivate anti-widowing (http://vip.wordpress.com/functions/widont/ ) because
+# Deactivate anti-widowing (https://vip.wordpress.com/functions/widont/ ) because
 # it often causes post titles in the "Featured posts" list to run into the image
 # per https://wordpressvip.zendesk.com/requests/33250
 remove_filter( 'the_title', 'widont' );
@@ -235,5 +235,5 @@ add_filter( 'infinite_scroll_js_settings', 'wmb_filter_jetpack_infinite_scroll_j
 
 # Default to HTTPS canonical URLs
 add_filter( 'rel_canonical', function( $canonical_url ) {
-	return  str_replace( 'http://', 'https://', $canonical_url );
+	return str_replace( 'http://', 'https://', $canonical_url );
 } );

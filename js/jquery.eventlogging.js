@@ -1,4 +1,4 @@
-(function ($) {
+( function ( $ ) {
 	$( function () {
 
 		function urlStripProto( url ) {
@@ -28,7 +28,7 @@
 				capsule[ 'event' ][ 'referrerUrl' ] = urlStripProto( document.referrer );
 			}
 			var beacon = document.createElement( 'img' );
-			beacon.src = '//www.wikimedia.org/beacon/event?' + encodeURIComponent( $.toJSON( capsule ) ) + ';';
+			beacon.src = 'https://www.wikimedia.org/beacon/event?' + encodeURIComponent( $.toJSON( capsule ) ) + ';';
 		}, 0 );
 	} );
-}(jQuery));
+}( jQuery ) );

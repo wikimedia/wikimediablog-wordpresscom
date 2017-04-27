@@ -18,8 +18,8 @@ function wmb_register_widgets() {
 class WMB_Social_Links extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( 'WMB_Social_Links', 'WikiMedia - Social Links', array( 
-			'description' => 'Displays a widget with social links, managed from Appearance -> Options.', 
+		parent::__construct( 'WMB_Social_Links', 'WikiMedia - Social Links', array(
+			'description' => 'Displays a widget with social links, managed from Appearance -> Options.',
 			'classname' => 'widget_connect'
 		) );
 	}
@@ -61,7 +61,7 @@ class WMB_Social_Links extends WP_Widget {
 			'twitter' => 'twitter',
 			'linkedin' => 'linkedin',
 			'rss' => 'rss',
-		);	
+		);
 
 		foreach ($socials as $classname => $option_name) {
 			$option_key = $option_name . '_link';
@@ -103,10 +103,10 @@ class WMB_Subscribe_Widget extends WP_Widget {
 		}
 		?>
 		<p>
-			<label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_attr_e( 'Title:', 'wmb' ); ?></label> 
+			<label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_attr_e( 'Title:', 'wmb' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
-		<?php 
+		<?php
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -126,22 +126,22 @@ class WMB_Subscribe_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		echo wp_kses_post( $before_widget );
 
-		if ( !empty( $title ) ) { 
-			echo wp_kses_post( $before_title ) . esc_html( $title ) . wp_kses_post( $after_title ); 
+		if ( !empty( $title ) ) {
+			echo wp_kses_post( $before_title ) . esc_html( $title ) . wp_kses_post( $after_title );
 		}
 
 		?>
 
 		<!-- Begin MailChimp Signup Form -->
-		<link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
-		
+		<link href="https://cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+
 		<div id="mc_embed_signup">
-			<form action="//wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			<form action="https://wikimediafoundation.us11.list-manage.com/subscribe/post?u=7e010456c3e448b30d8703345&amp;id=246cd15c56" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 			    <div id="mc_embed_signup_scroll">
 					<div class="mc-field-group email">
 						<input type="email" placeholder="Your email address" name="EMAIL" class="email" id="mce-EMAIL">
 					</div>
-					
+
 					<div class="clear"></div>
 
 					<div class="mc-field-group input-group">
@@ -152,21 +152,22 @@ class WMB_Subscribe_Widget extends WP_Widget {
 					</div>
 
 					<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
-						
+
 					<div id="mce-responses" class="clear">
 						<div class="response" id="mce-error-response" style="display:none"></div>
 						<div class="response" id="mce-success-response" style="display:none"></div>
-					</div>    
+					</div>
 					<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 				    <div style="position: absolute; left: -5000px;"><input type="text" name="b_7e010456c3e448b30d8703345_246cd15c56" tabindex="-1" value=""></div>
-			    
+
 			    </div>
 			</form>
 		</div>
-		<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-		<script type='text/javascript' src='<?php echo esc_url( get_template_directory_uri() ); ?>/js/subscribe.js'></script>
+		<script src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+		<script>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+		<script src='<?php echo esc_url( get_template_directory_uri() ); ?>/js/subscribe.js'></script>
 		<!--End mc_embed_signup-->
-		<?php 
+		<?php
 		echo wp_kses_post( $after_widget );
 	}
 
@@ -178,8 +179,8 @@ class WMB_Subscribe_Widget extends WP_Widget {
 class WMB_Category_Posts extends WP_Widget {
 
 	function __construct() {
-		parent::__construct('WMB_Category_Posts', 'WikiMedia - Category Posts', array( 
-			'description' => 'Displays a widget with most recent posts from a certain category.', 
+		parent::__construct('WMB_Category_Posts', 'WikiMedia - Category Posts', array(
+			'description' => 'Displays a widget with most recent posts from a certain category.',
 			'classname' => 'widget_community'
 		));
 	}
@@ -240,7 +241,7 @@ class WMB_Category_Posts extends WP_Widget {
 			'posts_per_page' => $total_posts,
 			'cat' => $instance['post_category'],
 		);
-		$posts = new WP_Query( $query_args ); 
+		$posts = new WP_Query( $query_args );
 
 		if ( $posts->have_posts() ) {
 			?>
@@ -261,7 +262,7 @@ class WMB_Category_Posts extends WP_Widget {
 					</li>
 				<?php endwhile; ?>
 			</ul>
-		
+
 			<?php
 
 			if ( !empty( $instance['more_link_text'] ) ) {
@@ -293,8 +294,8 @@ class WMB_Category_Posts extends WP_Widget {
 class WMB_Most_Viewed_Posts extends WP_Widget {
 
 	function __construct() {
-		parent::__construct('WMB_Most_Viewed_Posts', 'WikiMedia - Most Viewed Posts', array( 
-			'description' => 'Displays a widget with most viewed posts within a certain number of days.', 
+		parent::__construct('WMB_Most_Viewed_Posts', 'WikiMedia - Most Viewed Posts', array(
+			'description' => 'Displays a widget with most viewed posts within a certain number of days.',
 			'classname' => 'widget_most_viewed'
 		));
 	}
@@ -397,8 +398,8 @@ class WMB_Most_Viewed_Posts extends WP_Widget {
 class WMB_Custom_Quote extends WP_Widget {
 
 	function __construct() {
-		parent::__construct('WMB_Custom_Quote', 'WikiMedia - Custom Quote', array( 
-			'description' => 'Displays a widget with a custom quote.', 
+		parent::__construct('WMB_Custom_Quote', 'WikiMedia - Custom Quote', array(
+			'description' => 'Displays a widget with a custom quote.',
 			'classname' => 'widget_quote'
 		));
 	}
@@ -437,7 +438,7 @@ class WMB_Custom_Quote extends WP_Widget {
 					<?php echo wp_kses_post( apply_filters( 'the_content', $instance['quote'] ) ); ?>
 				</div><!-- /.entry -->
 			<?php endif ?>
-			
+
 			<?php if ( !empty( $instance['author'] ) ): ?>
 				<p class="meta">
 					<?php echo wp_kses_post( nl2br( $instance['author'] ) ); ?>
@@ -457,8 +458,8 @@ class WMB_Custom_Quote extends WP_Widget {
 class WMB_Archives extends WP_Widget {
 
 	function __construct() {
-		parent::__construct('WMB_Archives', 'WikiMedia - Archives', array( 
-			'description' => 'Displays a widget with a custom archives.', 
+		parent::__construct('WMB_Archives', 'WikiMedia - Archives', array(
+			'description' => 'Displays a widget with a custom archives.',
 			'classname' => 'widget_archive'
 		));
 	}
@@ -507,11 +508,11 @@ class WMB_Archives extends WP_Widget {
 		}
 
 		echo '<li class="older-posts"><a href="#">' . esc_html__( 'Older Posts', 'wmb' ) . '</a>&nbsp;(' . esc_html( $total_posts ) . ')</li>';
-		
+
 		wp_get_archives( array(
 			'type' => 'yearly',
 			'show_post_count' => true,
-		) );		
+		) );
 
 		echo '</ul>';
 

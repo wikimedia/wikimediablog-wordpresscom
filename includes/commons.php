@@ -25,9 +25,9 @@ function wmb_content_load_page() {
 	global $post;
 	media_upload_header();
 	?>
-    <div class="describe" style="margin: 20px;">Image URL: 
+    <div class="describe" style="margin: 20px;">Image URL:
 		<input id="src" type="text" name="imageurl" style="font-size: 18px;padding: 12px 14px;width: 100%;"><br/>
-		<div class="help-text" style="font-size:13px;color: #000088;padding: 5px;">You MUST use an image URL that specifies the width (i.e. <i>http://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Bald_Eagle_Head_sq.jpg/768px-Bald_Eagle_Head_sq.jpg</i>)</div>
+		<div class="help-text" style="font-size:13px;color: #000088;padding: 5px;">You MUST use an image URL that specifies the width (i.e. <i>https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Bald_Eagle_Head_sq.jpg/768px-Bald_Eagle_Head_sq.jpg</i>)</div>
 		<input type="submit" id="loadImage" value="Upload">
 		<div id="succes"></div>
     </div>
@@ -35,7 +35,7 @@ function wmb_content_load_page() {
 }
 
 add_action( 'admin_enqueue_scripts', 'wmb_commons_caption' );
-function wmb_commons_caption( $hook ) { 
+function wmb_commons_caption( $hook ) {
     wp_deregister_script( 'upload-media-script' );
     wp_register_script( 'upload-media-script', get_template_directory_uri() . '/js/caption-from-commons.js' );
     wp_enqueue_script( 'upload-media-script' );
@@ -99,7 +99,7 @@ function wmb_media_upload_type_form1( $type = 'file', $errors = null, $id = null
 
 	<?php
 }
-  
+
 function wmb_custom_attachments_fields( $form_fields, $post ) {
     $field_value = get_post_meta( $post->ID, 'post_excerpt', true );
     $allowed_html = array(
@@ -132,13 +132,13 @@ function wmb_ajax_get_commons_data() {
 	$url_without_width = str_replace( $from_last_slash, '', $url ); // remove part of string containing width
 	$filename = strrchr( $url_without_width, '/' ); // get filename with leading slash
 	$filename = substr( $filename, 1 ); // remove leading slash
-	
+
 	if ( ! $width || ! $filename ) {
 		wmb_ajax_error();
 	}
 
-	$xml = wmb_get_xml( 'http://tools.wmflabs.org/magnus-toolserver/commonsapi.php?image=' . $filename . '&thumbwidth=' . $width );
-	
+	$xml = wmb_get_xml( 'https://tools.wmflabs.org/magnus-toolserver/commonsapi.php?image=' . $filename . '&thumbwidth=' . $width );
+
 	if ( !$xml || property_exists( $xml, 'error' ) ) {
 		wmb_ajax_error();
 	}
@@ -152,7 +152,7 @@ function wmb_ajax_get_commons_data() {
 	$post_id = absint( $_POST['post_id'] );
 	$desc = $commons_filename;
 	$commons_url = str_replace( 'http:', 'https:', $xml->file->urls->description );
-	$caption = '<a href="' . esc_url( $commons_url ) . '">"' . esc_html( $commons_filename ) . '"</a> by <a href="' . esc_url( $commons_uploader_url ) . '">' . esc_html( $commons_uploader ) . 
+	$caption = '<a href="' . esc_url( $commons_url ) . '">"' . esc_html( $commons_filename ) . '"</a> by <a href="' . esc_url( $commons_uploader_url ) . '">' . esc_html( $commons_uploader ) .
 	  '</a>, under <a href="' . esc_url( $xml->licenses->license->license_text_url ) . '">' . esc_html( $xml->licenses->license->name ) . '</a>';
 
 	if ( function_exists( 'wpcom_vip_download_image' ) ) {
@@ -177,7 +177,7 @@ function wmb_ajax_get_commons_data() {
 }
 
 add_filter( 'attachment_link', 'wmb_filter_attachment_link', 10, 2 );
-function wmb_filter_attachment_link( $link, $postID = 0 ) { 
+function wmb_filter_attachment_link( $link, $postID = 0 ) {
 	update_option( 'image_default_link_type', 'post' );
 
 	$commons_attach = get_post_meta( $postID, 'commons_attach', true );
@@ -185,5 +185,5 @@ function wmb_filter_attachment_link( $link, $postID = 0 ) {
 		$commons_attach = $link;
 	}
 
-	return $commons_attach;	
+	return $commons_attach;
 }
