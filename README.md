@@ -4,27 +4,15 @@ Wikimedia Blog WordPress Theme
 Development Setup
 -----------------
 
-1. Setup WordPress [VIP quickstart](https://github.com/Automattic/vip-quickstart) environment
+1. Set up WordPress VIP environment per the [general documentation](https://vip.wordpress.com/documentation/vip/developers-guide-to-wordpress-com-vip/) 
 2. Clone this theme repo into `www/wp-content/themes/vip/`
 
-Deployment (from 2015, outdated)
+Deployment 
 ----------
+## Via the GitHub mirror ##
+Merge change to Master in GitHub, and then sync it to the production SVN as described at https://meta.wikimedia.org/wiki/Wikimedia_Blog/SVN-GitHub_mirror_of_the_WordPress_theme
 
-## Staging ###
-
-Use standard git deployment
-
-* Add your public ssh key to the authorized_keys file on the staging server: `/home/git/.ssh/authorized_keys`
-* Add the staging server as a git remote
-
-		$ git remote add staging git@wikimediablog.staging.exygy.com:/home/git/wikimedia-blog
-
-* Push your changes, as normal.
-
-		$ git push staging master
-
-
-## Production ##
+## Directly to the Production SVN ##
 
 * Setup existing theme directory as VIP svn repo, by doing an svn checkout within your working directory
 
@@ -38,3 +26,5 @@ Use standard git deployment
 * Commit svn changes to deploy to VIP
 
 		$ svn commit -m "New commit for deployment on WordPress VIP"
+
+* After review and deployment by Automattic, sync the GitHub mirror as described at https://meta.wikimedia.org/wiki/Wikimedia_Blog/SVN-GitHub_mirror_of_the_WordPress_theme
