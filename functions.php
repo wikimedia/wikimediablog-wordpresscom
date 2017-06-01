@@ -244,3 +244,4 @@ function wmb_filter_shortlink( $shortlink, $id, $context ) {
     return str_replace( 'http://', 'https://', $shortlink );
 }
 
+wpcom_vip_enable_opengraph();

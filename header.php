@@ -6,9 +6,6 @@
 	<link rel="shortcut icon" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/favicon.ico" />
 	<link rel="pingback" href="<?php echo esc_attr( get_bloginfo( 'pingback_url' ) ); ?>" />
 <?php if ( is_single() ) {
-	echo '<meta property="og:image" content="' . htmlspecialchars ( get_the_post_thumbnail( 'large' ) ) . '"/>';
-	echo '<meta property="og:description" content="' . htmlspecialchars( get_bloginfo( 'description' ) ) . '"/>';
-	echo '<meta property="og:title" content="' . htmlspecialchars( get_the_title() ) . '"/>';
 	echo '<meta name="twitter:card" content="summary_large_image">';
 	echo '<meta name="twitter:site" content="@wikimedia">';
 }
