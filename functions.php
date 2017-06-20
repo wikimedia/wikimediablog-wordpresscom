@@ -237,3 +237,10 @@ add_filter( 'infinite_scroll_js_settings', 'wmb_filter_jetpack_infinite_scroll_j
 add_filter( 'rel_canonical', function( $canonical_url ) {
 	return str_replace( 'http://', 'https://', $canonical_url );
 } );
+
+# Default to HTTPS shortlink URLs
+add_filter( 'get_shortlink', 'wmb_filter_shortlink', 1000, 3 );
+function wmb_filter_shortlink( $shortlink, $id, $context ) {
+    return str_replace( 'http://', 'https://', $shortlink );
+}
+
