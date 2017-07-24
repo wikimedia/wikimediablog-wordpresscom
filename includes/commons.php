@@ -157,9 +157,6 @@ function wmb_ajax_get_commons_data() {
 
 	if ( function_exists( 'wpcom_vip_download_image' ) ) {
 		$id = wpcom_vip_download_image( $url, $post_id, $desc );
-		if ( is_wp_error( $id ) ) {
-			do_action( 'wpcom_vip_debug_wikimedia_20140717', $id );
-		}
 
 		update_post_meta( $id, 'commons_attach', stripslashes( $commons_url ) );
 		update_post_meta( $post_id, 'files', $id );
